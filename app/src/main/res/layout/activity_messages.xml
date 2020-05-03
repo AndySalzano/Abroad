@@ -10,26 +10,48 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/colorLightGrey"
+        >
 
-        <ImageView
-            android:id="@+id/img_reciever"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/barcelona" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/img_reciever"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/barcelona" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_rounded_profile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="centerCrop"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/txt_reciever"
             style="@style/AccommodationName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center" />
+            android:gravity="start|center"
+            />
 
     </LinearLayout>
 

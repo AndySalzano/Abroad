@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.CalendarView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +29,10 @@ class CalendarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
 
-        uid = getUserUID()
+        uid = FirebaseAuth.getInstance().currentUser?.uid
+
+        val calendar = findViewById<CalendarView>(R.id.calendar)
+
         getUserNumOfAccomm()
         getDataFromAccom()
     }
@@ -40,10 +44,6 @@ class CalendarActivity : AppCompatActivity() {
                     android.R.layout.simple_spinner_item, names)
             spinner.adapter = adapter
         }
-    }
-
-    private fun getUserUID(): String? {
-        return FirebaseAuth.getInstance().currentUser?.uid
     }
 
     private fun getUserNumOfAccomm() {

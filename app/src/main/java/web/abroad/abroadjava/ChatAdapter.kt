@@ -15,13 +15,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_chats.*
 import web.abroad.abroadjava.model.Accommodation
 import web.abroad.abroadjava.model.Message
 import java.io.File
 
-class ChatAdapter(val context: Context, val chatList : ArrayList<Message>, onAccommodationClickListener: OnAccommodationClickListener) : RecyclerView.Adapter<CustomChat>(){
+class ChatAdapter(val context: Context, val chatList : ArrayList<Message>, onAccommodationClickListener: OnAccommodationClickListener, val userUid : String) : RecyclerView.Adapter<CustomChat>(){
 
     var mOnAccommodationClickListener : OnAccommodationClickListener = onAccommodationClickListener
 
@@ -35,7 +36,7 @@ class ChatAdapter(val context: Context, val chatList : ArrayList<Message>, onAcc
     }
 
     override fun onBindViewHolder(holder: CustomChat, position: Int) {
-        holder.bind(chatList[position], position.toString(), mOnAccommodationClickListener, context)
+        holder.bind(chatList[position], position.toString(), mOnAccommodationClickListener, context, userUid)
     }
 }
 
@@ -44,19 +45,21 @@ class CustomChat(val view : View) : RecyclerView.ViewHolder(view) , View.OnClick
     var name  : TextView = view.findViewById<TextView>(R.id.txt_reciever)
     var content : TextView = view.findViewById<TextView>(R.id.txt_message)
     var img   : ImageView = view.findViewById<ImageView>(R.id.img_reciever)
+    val imgRounded : ImageView = view.findViewById<ImageView>(R.id.img_rounded_profile)
 
     lateinit var onAccommodationClickListener : OnAccommodationClickListener
 
-    fun bind(message: Message, position: String, onAccommodationClickListener: OnAccommodationClickListener, context: Context) {
+    fun bind(message: Message, position: String, onAccommodationClickListener: OnAccommodationClickListener, context: Context, userUid: String) {
         content.text = message.content
-
         val database = Firebase.database
         val myRef = database.getReference("users")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (retrievedUser in dataSnapshot.children) {
-                    if(retrievedUser.child("uid").value.toString() == message.recieverUid ||
-                            retrievedUser.child("uid").value.toString()  == message.senderUid){
+                    if(retrievedUser.child("uid").value.toString() == message.recieverUid &&
+                            retrievedUser.child("uid").value.toString() != userUid){
+                        name.text = retrievedUser.child("name").value.toString()
+                    }else if(retrievedUser.child("uid").value.toString() == message.senderUid){
                         name.text = retrievedUser.child("name").value.toString()
                     }
                 }
@@ -68,11 +71,17 @@ class CustomChat(val view : View) : RecyclerView.ViewHolder(view) , View.OnClick
             }
         })
 
-        val storageReference = Firebase.storage.getReference("/profile_images/${message.recieverUid}")
+        val storageReference : StorageReference
+        if(message.recieverUid == userUid){
+            storageReference = Firebase.storage.getReference("/profile_images/${message.senderUid}")
+        }else{
+            storageReference = Firebase.storage.getReference("/profile_images/${message.recieverUid}")
+        }
         val file = File.createTempFile("img", "jpg")
         storageReference.getFile(file).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-            img.setImageBitmap(bitmap)
+            imgRounded.setImageBitmap(bitmap)
+            img.alpha = 0f
         }.addOnFailureListener{
             img.setImageResource(R.drawable.img_circle_2)
         }

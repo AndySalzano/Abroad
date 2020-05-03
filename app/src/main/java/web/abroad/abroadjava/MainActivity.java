@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-        //finding listview
         gridView = findViewById(R.id.gridview);
         txtCity  = findViewById(R.id.txt_city);
 
@@ -118,19 +116,6 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
 
                     //Toast.makeText(getApplicationContext(),city,Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
-        btnCost = findViewById(R.id.btn_search_cost);
-        if(btnCost!=null){
-            btnCost.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String city = txtCity.getText().toString();
-                    Toast.makeText(getApplicationContext(),city,Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(),btnFrom.getText(),Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(),btnTo.getText(),Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -44,7 +44,7 @@ class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
                         messageList?.add(bal!!)
                     }
                 }
-                val adapter = ChatAdapter(applicationContext!!,messageList!!, this@ChatsActivity)
+                val adapter = ChatAdapter(applicationContext!!,messageList!!, this@ChatsActivity, userUid.toString())
                 recyclerviewChats.layoutManager = LinearLayoutManager(applicationContext)
                 recyclerviewChats.adapter = adapter
             }
@@ -59,7 +59,11 @@ class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
     override fun onAccommodationClickListener(position : Int){
         //Toast.makeText(applicationContext,"message sent", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MessagesActivity::class.java)
-        intent.putExtra("RECIEVERUID", messageList?.get(position)!!.recieverUid)
+        if(userUid == messageList?.get(position)!!.recieverUid){
+            intent.putExtra("RECIEVERUID", messageList?.get(position)!!.senderUid)
+        }else{
+            intent.putExtra("RECIEVERUID", messageList?.get(position)!!.recieverUid)
+        }
         startActivity(intent)
     }
 

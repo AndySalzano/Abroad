@@ -23,6 +23,9 @@ import web.abroad.abroadjava.model.Accommodation
 import web.abroad.abroadjava.model.Message
 import web.abroad.abroadjava.model.User
 import java.io.File
+import java.sql.Timestamp
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MessagesActivity : AppCompatActivity() {
@@ -30,6 +33,7 @@ class MessagesActivity : AppCompatActivity() {
     lateinit var recieverUid : String
     val userUid = FirebaseAuth.getInstance().uid
     var messageList : ArrayList<Message> ?= ArrayList()
+    var refresh = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,31 +71,44 @@ class MessagesActivity : AppCompatActivity() {
     }
 
     private fun displayImage(){
+
         val storageReference = Firebase.storage.getReference("/profile_images/$recieverUid")
         val imageView = findViewById<ImageView>(R.id.img_reciever)
+        val imgRounded = findViewById<ImageView>(R.id.img_rounded_profile)
         val file = File.createTempFile("img", "jpg")
         storageReference.getFile(file).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-            imageView.setImageBitmap(bitmap)
+            imgRounded.setImageBitmap(bitmap)
+            imageView.alpha = 0f
         }.addOnFailureListener{
             imageView.setImageResource(R.drawable.img_circle_2)
         }
     }
+
     private fun displayMessages(){
         val database = Firebase.database
-        val myRef = database.getReference("messages")
+        val myRef = database.getReference("messages").orderByChild("timestamp")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (retrievedMessage in dataSnapshot.children) {
-                    if(retrievedMessage.child("senderUid").value.toString() == userUid &&
-                            retrievedMessage.child("recieverUid").value.toString() == recieverUid){
+                    if((retrievedMessage.child("senderUid").value.toString() == userUid &&
+                            retrievedMessage.child("recieverUid").value.toString() == recieverUid) ||
+                            (retrievedMessage.child("senderUid").value.toString() == recieverUid &&
+                            retrievedMessage.child("recieverUid").value.toString() == userUid)){
                         val bal = retrievedMessage.getValue(Message::class.java)
                         messageList?.add(bal!!)
                     }
                 }
-                val adapter = MessageAdapter(applicationContext!!,messageList!!, userUid.toString())
-                recyclerviewMessage.layoutManager = LinearLayoutManager(applicationContext)
-                recyclerviewMessage.adapter = adapter
+
+                if(!refresh){
+                    refresh = true
+                    val adapter = MessageAdapter(applicationContext!!,messageList!!, userUid.toString())
+                    recyclerviewMessage.layoutManager = LinearLayoutManager(applicationContext)
+                    recyclerviewMessage.adapter = adapter
+                }else{
+                    finish();
+                    startActivity(intent);
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -106,7 +123,8 @@ class MessagesActivity : AppCompatActivity() {
         val message = Message(
                 userUid,
                 recieverUid,
-                content
+                content,
+                (System.currentTimeMillis() / 1000)
         )
 
         val msgUid = UUID.randomUUID().toString()
