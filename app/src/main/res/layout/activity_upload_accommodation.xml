@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadAccommodationActivity">
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutRegister"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ScrollView
+            android:id="@+id/ScrollViewID"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/txt_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/REGISTER_name"
+                    android:padding="10dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBlack" />
+
+                <TextView
+                    style="@style/TextExplanationMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/UPACCOMM_types_explanation" />
+
+                <Spinner
+                    style="@style/spinner_style"
+                    android:id="@+id/spinner_types"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                </Spinner>
+
+                <EditText
+                    android:id="@+id/txt_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/UPACCOMM_address"
+                    android:padding="10dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/txt_city"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/UPACCOMM_city"
+                    android:padding="10dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/txt_price"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/UPACCOMM_price"
+                    android:inputType="number"
+                    android:padding="10dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/txt_rental_period"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/UPACCOMM_rental_period"
+                    android:padding="10dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/txt_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="10dp"
+                    android:gravity="start"
+                    android:hint="@string/UPACCOMM_description"
+                    android:background="@drawable/border_rectangle"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_rectangle">
+
+                    <ImageView
+                        android:id="@+id/img_accomm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/img_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_add_a_photo" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btn_add_photo"
+                    style="@style/TextWhiteBtnFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/rectangle_opaque"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/UPACCOMM_add_photo" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBlack" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+
+                    android:text="@string/UPACCOMM_property"
+                    style="@style/TextExplanationSmall"
+                    />
+
+                <Button
+                    android:id="@+id/btn_add_document"
+                    style="@style/TextWhiteBtnFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/rectangle_opaque"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/UPACCOMM_add_property" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBlack" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_services"
+                    style="@style/TextExplanationSmall"
+                    />
+
+                <Switch
+                    android:id="@+id/switch_service_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_service_1"
+                    android:layout_gravity="left"
+                    android:layoutDirection="rtl"
+                    app:switchPadding="8dp"/>
+
+                <Switch
+                    android:id="@+id/switch_service_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_service_2"
+                    android:layout_gravity="left"
+                    android:layoutDirection="rtl"
+                    app:switchPadding="8dp"/>
+
+                <Switch
+                    android:id="@+id/switch_service_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_service_3"
+                    android:layout_gravity="left"
+                    android:layoutDirection="rtl"
+                    app:switchPadding="8dp"/>
+
+                <Switch
+                    android:id="@+id/switch_service_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_service_4"
+                    android:layout_gravity="left"
+                    android:layoutDirection="rtl"
+                    app:switchPadding="8dp"/>
+
+                <Switch
+                    android:id="@+id/switch_service_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_service_5"
+                    android:layout_gravity="left"
+                    android:layoutDirection="rtl"
+                    app:switchPadding="8dp"/>
+
+                <Switch
+                    android:id="@+id/switch_service_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_service_6"
+                    android:layout_gravity="left"
+                    android:layoutDirection="rtl"
+                    app:switchPadding="8dp"/>
+
+                <Switch
+                    android:id="@+id/switch_service_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/UPACCOMM_service_7"
+                    android:layout_gravity="left"
+                    android:layoutDirection="rtl"
+                    app:switchPadding="8dp"/>
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    style="@style/TextWhiteBtnFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/rectangle_opaque"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/UPACCOMM_submit" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

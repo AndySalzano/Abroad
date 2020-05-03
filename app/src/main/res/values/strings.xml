@@ -1,0 +1,122 @@
+<resources>
+    <string name="app_name">Abroad</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="role_user">(User)</string>
+    <string name="role_owner">(Owner)</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="DASHBOARD_subtitle">Where do you want to go?</string>
+    <string name="DASHBOARD_city_hint">Your next city</string>
+    <string name="DASHBOARD_from">From</string>
+    <string name="DASHBOARD_to">To</string>
+    <string name="DASHBOARD_search">Search accommodations</string>
+    <string name="DASHBOARD_cost">Search cost of living</string>
+    <string name="DASHBOARD_empty_city">Write a city</string>
+    <string name="DASHBOARD_empty_date">Pick a date</string>
+
+    <string name="LOGIN_explanation">You need to create an account in order to talk with the owners of the accommodations.</string>
+    <string name="LOGIN_subtitle">Login with your account</string>
+    <string name="LOGIN_user_hint">Your email</string>
+    <string name="LOGIN_pwd_hint">Your password</string>
+    <string name="LOGIN_login">Login</string>
+    <string name="LOGIN_create_account">Create account</string>
+    <string name="LOGIN_create_owner">I want to be owner</string>
+    <string name="LOGIN_forgot_pwd">I forgot my password</string>
+
+    <string name="REGISTER_name">Name</string>
+    <string name="REGISTER_lastname">Last name</string>
+    <string name="REGISTER_email">Email</string>
+    <string name="REGISTER_phone">Phone number (with country code)</string>
+    <string name="REGISTER_pwd">Password</string>
+    <string name="REGISTER_confirm_pwd">Confirm password</string>
+    <string name="REGISTER_id">Upload national ID/Passport</string>
+    <string name="REGISTER_id_explanation">Do not worry, we will not share your ID with anyone else. We ask this in order to make sure you can trust the owner and they can do the same for you</string>
+    <string name="REGISTER_img">Your profile picture:</string>
+    <string name="REGISTER_next_part">Now tell us a bit more about yourself, so we can offer you the accommodations that better suit to you :)</string>
+    <string name="REGISTER_home_country">Home country</string>
+    <string name="REGISTER_home_city">Home city</string>
+    <string name="REGISTER_destination_country">Destination country</string>
+    <string name="REGISTER_destination_city">Destination city</string>
+    <string name="REGISTER_current_studies">Current studies</string>
+    <string name="REGISTER_error_empty">Fill all the information</string>
+    <string name="REGISTER_error_exists">Sorry, this email or phone already has an account</string>
+    <string name="REGISTER_create_account">Create account</string>
+
+    <string name="PROFILE_options">Options:</string>
+    <string name="PROFILE_logout">Log out</string>
+    <string name="PROFILE_edit_info">Edit information</string>
+    <string name="PROFILE_see_accommodations">See accommodations</string>
+    <string name="PROFILE_contacts">Contacts who use Abroad</string>
+    <string name="PROFILE_terms_privacy">Read terms of service and privacy</string>
+    <string name="PROFILE_deactivate">Deactivate account</string>
+
+    <string name="FORGOTPWD_explanation">Write your email and we will send a message to reset your password</string>
+    <string name="FORGOTPWD_email">Email</string>
+    <string name="FORGOTPWD_submit">Send password reset email</string>
+
+    <string name="EDITPROFILE_upload_id">Upload new ID/Passport</string>
+    <string name="EDITPROFILE_submit">Edit information</string>
+
+    <string name="MYACCOMM_subtitle">My accommodations</string>
+    <string name="MYACCOMM_upload">Upload an accommodation</string>
+    <string name="MYACCOMM_status">Status of the accommodations</string>
+
+    <string name="UPACCOMM_types_explanation">Select the type of accommodation</string>
+    <string-array name="UPACCOMM_types">
+        <item>Private room in a shared flat</item>
+        <item>Private flat</item>
+        <item>Studio</item>
+        <item>Shared room</item>
+    </string-array>
+
+    <string name="UPACCOMM_city">City of the accommodation</string>
+    <string name="UPACCOMM_address">Address</string>
+    <string name="UPACCOMM_price">Monthly price</string>
+    <string name="UPACCOMM_rental_period">Minimum rental period</string>
+    <string name="UPACCOMM_description">Write a description of your accommodation</string>
+    <string name="UPACCOMM_add_photo">Add photos</string>
+    <string name="UPACCOMM_property">To ensure you are uploading a valid accommodation, upload the Register of Property of the mentioned accommodation</string>
+    <string name="UPACCOMM_add_property">Upload register of property</string>
+    <string name="UPACCOMM_services">Select which services are provided in your accommodation:</string>
+    <string name="UPACCOMM_service_1">Microwave</string>
+    <string name="UPACCOMM_service_2">Internet</string>
+    <string name="UPACCOMM_service_3">Parties allowed</string>
+    <string name="UPACCOMM_service_4">Smoking allowed</string>
+    <string name="UPACCOMM_service_5">Balcony</string>
+    <string name="UPACCOMM_service_6">Heater</string>
+    <string name="UPACCOMM_service_7">Air conditioner</string>
+    <string name="UPACCOMM_submit">Upload accommodation</string>
+
+    <string name="CALENDAR_subtitle">Calendar of the accommodations</string>
+    <string name="CALENDAR_explanation">Here you can see a calendar with the dates where your accommodation is booked and when it is not. Select an accommodation below to see</string>
+
+    <string name="ACCOMADAPTER_price">%s€/month</string>
+
+    <string name="ACCOMMODATION_owner">Owner: %s %s</string>
+    <string name="ACCOMMODATION_rental_period">Minimum rental period: %s</string>
+    <string name="ACCOMMODATION_description_title">Description about the accommodation:</string>
+    <string name="ACCOMMODATION_contact">Contact the owner</string>
+    <string name="ACCOMMODATION_edit">Edit information</string>
+    <string name="ACCOMMODATION_map_title">Showing location of: %s</string>
+    <string name="ACCOMMODATION_map_title_error">Something went wrong displaying the map</string>
+    <string name="ACCOMMODATION_services_title">Services in the accommodation:</string>
+    <string-array name="ACCOMMODATION_services">
+        <item>Microwave: </item>
+        <item>Internet: </item>
+        <item>Parties allowed: </item>
+        <item>Smoking allowed: </item>
+        <item>Balcony: </item>
+        <item>Heater: </item>
+        <item>Air conditioner: </item>
+    </string-array>
+    <string name="ACCOMMODATION_document_title">Register of property:</string>
+    <string name="ACCOMMODATION_document_explanation">The register of property is a legal document which shows who is the owner of the mentioned property. All owners have to upload their real document before uploading the accommodation, thus ensuring it is a safe and existing property </string>
+    <string name="ACCOMMODATION_see_document">See the document</string>
+
+    <string name="MESSAGE_send_message">Send message</string>
+    <string name="CHAT_subtitle">Chats</string>
+</resources>
+

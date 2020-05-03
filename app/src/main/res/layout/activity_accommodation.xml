@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccommodationActivity">
+
+    <ScrollView
+        android:id="@+id/ScrollViewID"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/img_slider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/border_rectangle_maps"/>
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="20dp"
+                style="@style/AccommodationName"/>
+
+            <TextView
+                android:id="@+id/txt_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:drawableStart="@drawable/ic_place_24px"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:drawableStart="@drawable/ic_house_24px"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:drawableStart="@drawable/ic_money_24px"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_rental_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:drawableStart="@drawable/ic_timelapse_24px"
+                style="@style/TextExplanationMedium"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:text="@string/ACCOMMODATION_description_title"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                style="@style/TextExplanationMedium"/>
+
+            <Button
+                android:id="@+id/btn_contact_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rectangle_opaque"
+                style="@style/TextWhiteBtnFont"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_map_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="25dp"
+                style="@style/TextExplanationMedium"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_rectangle_maps">
+                    <fragment
+                        android:id="@+id/map"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        tools:context=".MapsActivity"
+                        android:name="com.google.android.gms.maps.SupportMapFragment" />
+                </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_service_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:text="@string/ACCOMMODATION_services_title"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_service_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:text="@string/ACCOMMODATION_services_title"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_service_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_service_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_service_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_service_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_service_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_service_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                style="@style/TextExplanationMedium"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_document_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:text="@string/ACCOMMODATION_document_title"
+                style="@style/TextExplanationMedium"/>
+
+            <TextView
+                android:id="@+id/txt_document_explanation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/ACCOMMODATION_document_explanation"
+                style="@style/TextExplanationMedium"/>
+
+            <Button
+                android:id="@+id/btn_see_document"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_gravity="center"
+                android:text="@string/ACCOMMODATION_see_document"
+                android:background="@drawable/rectangle_opaque"
+                style="@style/TextWhiteBtnFont"/>
+
+            <ImageView
+                android:id="@+id/img_documentNOPE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
