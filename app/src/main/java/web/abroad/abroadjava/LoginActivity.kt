@@ -84,23 +84,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val logged = User.checkIfUserIsLogged()
         when (item.itemId) {
             R.id.chat -> {
-                Toast.makeText(applicationContext, "chat", Toast.LENGTH_SHORT).show()
+                if(logged){
+                    val intent = Intent(applicationContext, ChatsActivity::class.java)
+                    startActivity(intent);
+                }else{
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
                 return true
             }
             R.id.profile -> {
-                val logged = User.checkIfUserIsLogged()
-                /*if(logged){
-                    Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                if(logged){
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
                     startActivity(intent);
-                    return true;
-                }else{*/
-                val intent = Intent(applicationContext, LoginActivity::class.java)
-                startActivity(intent)
+                }else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
                 return true
             }
-        }//}
+        }
         return super.onOptionsItemSelected(item)
     }
 }

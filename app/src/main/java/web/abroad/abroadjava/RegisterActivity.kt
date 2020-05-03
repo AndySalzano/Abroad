@@ -131,47 +131,47 @@ class RegisterActivity : AppCompatActivity() {
             currentStudies : String,
             isOwner : Boolean
     ) {
-            Toast.makeText(applicationContext,"Creating account",Toast.LENGTH_SHORT).show()
-            /* Saves the profile img into Firebase Storage */
-            var clientStorage = FirebaseStorage.getInstance().getReference("/profile_images/$uid")
-            clientStorage.putFile(imageProfileUri!!).addOnSuccessListener {
-                Log.d("Register", "Successfully uploaded image ${it.metadata?.path}")
-                /* If the image is succesfully stored, we proceed to save the user into the Database */
-                clientStorage.downloadUrl.addOnSuccessListener{
-                    val clientDatabase = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        Toast.makeText(applicationContext,"Creating account",Toast.LENGTH_SHORT).show()
+        /* Saves the profile img into Firebase Storage */
+        var clientStorage = FirebaseStorage.getInstance().getReference("/profile_images/$uid")
+        clientStorage.putFile(imageProfileUri!!).addOnSuccessListener {
+            Log.d("Register", "Successfully uploaded image ${it.metadata?.path}")
+            /* If the image is succesfully stored, we proceed to save the user into the Database */
+            clientStorage.downloadUrl.addOnSuccessListener{
+                val clientDatabase = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-                    val imgProfile = it.toString()
-                    val user = User(
-                            uid,
-                            name,
-                            lastname,
-                            email,
-                            pwd,
-                            imgProfile,
-                            homeCountry,
-                            homeCity,
-                            destinationCountry,
-                            destinationCity,
-                            currentStudies,
-                            isOwner
-                    )
+                val imgProfile = it.toString()
+                val user = User(
+                        uid,
+                        name,
+                        lastname,
+                        email,
+                        pwd,
+                        imgProfile,
+                        homeCountry,
+                        homeCity,
+                        destinationCountry,
+                        destinationCity,
+                        currentStudies,
+                        isOwner
+                )
 
-                    clientDatabase.setValue(user)
-                            .addOnSuccessListener {
-                                Log.d("Register", "Successfully user saved")
-                                /* We save the ID photos with the same uid than the user */
-                                clientStorage = FirebaseStorage.getInstance().getReference("/id_images/$uid")
-                                clientStorage.putFile(imageIDUri!!).addOnSuccessListener {
-                                    Log.d("Register", "Successfully uploaded image ${it.metadata?.path}")
-                                    Toast.makeText(applicationContext,"Account created",Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, LoginActivity::class.java)
-                                    startActivity(intent)
-                                }
+                clientDatabase.setValue(user)
+                        .addOnSuccessListener {
+                            Log.d("Register", "Successfully user saved")
+                            /* We save the ID photos with the same uid than the user */
+                            clientStorage = FirebaseStorage.getInstance().getReference("/id_images/$uid")
+                            clientStorage.putFile(imageIDUri!!).addOnSuccessListener {
+                                Log.d("Register", "Successfully uploaded image ${it.metadata?.path}")
+                                Toast.makeText(applicationContext,"Account created",Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, LoginActivity::class.java)
+                                startActivity(intent)
                             }
-                            .addOnFailureListener{
-                                Log.d("Register", "User not saved")
-                            }
-                }
+                        }
+                        .addOnFailureListener{
+                            Log.d("Register", "User not saved")
+                        }
+            }
         }
     }
 
@@ -267,23 +267,29 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val logged = User.checkIfUserIsLogged()
         when (item.itemId) {
             R.id.chat -> {
-                Toast.makeText(applicationContext, "chat", Toast.LENGTH_SHORT).show()
+                if(logged){
+                    val intent = Intent(applicationContext, ChatsActivity::class.java)
+                    startActivity(intent);
+                }else{
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
                 return true
             }
             R.id.profile -> {
-                val logged = User.checkIfUserIsLogged()
-                /*if(logged){
-                    Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                if(logged){
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
                     startActivity(intent);
-                    return true;
-                }else{*/
-                val intent = Intent(applicationContext, LoginActivity::class.java)
-                startActivity(intent)
+                }else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
                 return true
             }
-        }//}
+        }
         return super.onOptionsItemSelected(item)
     }
 }

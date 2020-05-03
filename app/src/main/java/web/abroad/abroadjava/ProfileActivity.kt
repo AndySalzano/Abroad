@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +20,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import web.abroad.abroadjava.model.User
 import java.io.File
 
 class ProfileActivity : AppCompatActivity() {
@@ -138,8 +140,34 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        
         menuInflater.inflate(R.menu.actionbar, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val logged = User.checkIfUserIsLogged()
+        when (item.itemId) {
+            R.id.chat -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ChatsActivity::class.java)
+                    startActivity(intent);
+                }else{
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+            R.id.profile -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
+                    startActivity(intent);
+                }else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

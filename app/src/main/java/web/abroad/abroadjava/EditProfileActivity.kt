@@ -270,20 +270,27 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val logged = User.checkIfUserIsLogged()
         when (item.itemId) {
             R.id.chat -> {
-                Toast.makeText(applicationContext, "chat", Toast.LENGTH_SHORT).show()
-                return true
-            }
-            R.id.profile -> {
-                val logged = User.checkIfUserIsLogged()
                 if(logged){
-                    val intent = Intent(applicationContext, ProfileActivity::class.java)
-                    startActivity(intent)
+                    val intent = Intent(applicationContext, ChatsActivity::class.java)
+                    startActivity(intent);
                 }else{
                     val intent = Intent(applicationContext, LoginActivity::class.java)
                     startActivity(intent)
                 }
+                return true
+            }
+            R.id.profile -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
+                    startActivity(intent);
+                }else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
             }
         }
         return super.onOptionsItemSelected(item)

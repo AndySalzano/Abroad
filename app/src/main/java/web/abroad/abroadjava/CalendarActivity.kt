@@ -1,14 +1,10 @@
 package web.abroad.abroadjava
 
-		// Not quetly the data change should be observed, but you should query as you need the information.
-		// Notification could be important  if you create a backgroud service that maintains the local adapters.
-
-
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -19,13 +15,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.util.*
+import web.abroad.abroadjava.model.User
 import kotlin.collections.ArrayList
 
 class CalendarActivity : AppCompatActivity() {
 
-    private var uid : String? = null
-    private var numOfAccomm : Long? = null
+    private var uid: String? = null
+    private var numOfAccomm: Long? = null
     private var namesAccomm = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +31,9 @@ class CalendarActivity : AppCompatActivity() {
         uid = getUserUID()
         getUserNumOfAccomm()
         getDataFromAccom()
-        val names : Array<String> = arrayOf("hey","hola","whynot")
     }
 
-    private fun displayNamesOfAccomm(names: ArrayList<String>){
+    private fun displayNamesOfAccomm(names: ArrayList<String>) {
         val spinner = findViewById<Spinner>(R.id.spinner_accomm)
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
@@ -47,21 +42,22 @@ class CalendarActivity : AppCompatActivity() {
         }
     }
 
-    private fun getUserUID() : String? {
+    private fun getUserUID(): String? {
         return FirebaseAuth.getInstance().currentUser?.uid
     }
 
-    private fun getUserNumOfAccomm(){
+    private fun getUserNumOfAccomm() {
         val database = Firebase.database
         val myRef = database.getReference("users/$uid")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 numOfAccomm = dataSnapshot.child("numOfAccoms").value as Long?
-                if(numOfAccomm == null){
+                if (numOfAccomm == null) {
                     numOfAccomm = 0
                 }
                 //Toast.makeText(applicationContext, numOfAccomm, Toast.LENGTH_SHORT).show()
             }
+
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
                 Log.w("Login", "Failed to read value.", error.toException())
@@ -69,26 +65,56 @@ class CalendarActivity : AppCompatActivity() {
         })
     }
 
-    fun getDataFromAccom(){
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
+    private fun getDataFromAccom() {
         val database = Firebase.database
         val myRef = database.getReference("accommodations")
         myRef.addValueEventListener(object : ValueEventListener {
-		
-		
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (retrievedAccomm in dataSnapshot.children) {
-                    if (retrievedAccomm.child("uid").value.toString() == uid.toString()) {
+                    if (retrievedAccomm.child("ownerUid").value.toString() == uid.toString()) {
                         retrievedAccomm.child("name").value.toString()
                         namesAccomm.add(retrievedAccomm.child("name").value.toString())
                     }
                 }
                 displayNamesOfAccomm(namesAccomm)
             }
+
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
                 Log.w("Login", "Failed to read value.", error.toException())
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.actionbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val logged = User.checkIfUserIsLogged()
+        when (item.itemId) {
+            R.id.chat -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ChatsActivity::class.java)
+                    startActivity(intent);
+                }else{
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+            R.id.profile -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
+                    startActivity(intent);
+                }else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

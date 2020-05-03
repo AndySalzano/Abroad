@@ -3,6 +3,8 @@ package web.abroad.abroadjava
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chats.*
 import kotlinx.android.synthetic.main.activity_messages.*
 import web.abroad.abroadjava.model.Message
+import web.abroad.abroadjava.model.User
 import java.util.ArrayList
 
 class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
@@ -58,6 +61,38 @@ class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
         val intent = Intent(this, MessagesActivity::class.java)
         intent.putExtra("RECIEVERUID", messageList?.get(position)!!.recieverUid)
         startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.actionbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val logged = User.checkIfUserIsLogged()
+        when (item.itemId) {
+            R.id.chat -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ChatsActivity::class.java)
+                    startActivity(intent);
+                }else{
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+            R.id.profile -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
+                    startActivity(intent);
+                }else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

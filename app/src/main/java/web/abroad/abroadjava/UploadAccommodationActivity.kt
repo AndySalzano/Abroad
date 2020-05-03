@@ -22,6 +22,7 @@ import android.widget.Spinner
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.MenuItem
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_upload_accommodation.*
 import web.abroad.abroadjava.model.Accommodation
@@ -221,4 +222,30 @@ class UploadAccommodationActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val logged = User.checkIfUserIsLogged()
+        when (item.itemId) {
+            R.id.chat -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ChatsActivity::class.java)
+                    startActivity(intent);
+                }else{
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+            R.id.profile -> {
+                if(logged){
+                    val intent = Intent(applicationContext, ProfileActivity::class.java)
+                    startActivity(intent);
+                }else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
