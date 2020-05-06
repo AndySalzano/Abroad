@@ -58,8 +58,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(email: String, pwd : String){
-        lateinit var auth: FirebaseAuth
-        auth = FirebaseAuth.getInstance()
+        var auth: FirebaseAuth = FirebaseAuth.getInstance()
         auth.signInWithEmailAndPassword(email, pwd)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
