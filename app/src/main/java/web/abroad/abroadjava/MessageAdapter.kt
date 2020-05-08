@@ -1,23 +1,13 @@
 package web.abroad.abroadjava
 
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import web.abroad.abroadjava.model.Accommodation
 import web.abroad.abroadjava.model.Message
-import java.io.File
-import java.nio.file.LinkOption
 
 class MessageAdapter(val context: Context, val MessageList : ArrayList<Message>, val userUid : String) : RecyclerView.Adapter<CustomMessage>(){
 
@@ -43,9 +33,11 @@ class CustomMessage(val view : View) : RecyclerView.ViewHolder(view){
     fun bind(message: Message, position: String, context: Context, userUid: String) {
         info.text  = message.content
         if(message.senderUid == userUid){
-            //NOT WORKING view.layoutDirection = View.LAYOUT_DIRECTION_RTL
             cv.layoutDirection = View.LAYOUT_DIRECTION_RTL
+            info.background = context.getDrawable(R.drawable.message_user_rectangle)
             info.textAlignment = View.TEXT_ALIGNMENT_TEXT_END
+            info.setPadding(25, 25, 25, 25)
         }
+        info.setTextColor(context.getColor(R.color.colorBlack))
     }
 }
