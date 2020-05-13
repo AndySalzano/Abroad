@@ -24,6 +24,7 @@ class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
 
     var messageList : ArrayList<Message>?= ArrayList()
     val userUid = FirebaseAuth.getInstance().uid
+    var arrayUids : ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +39,30 @@ class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (retrievedMessage in dataSnapshot.children) {
-                    if(retrievedMessage.child("senderUid").value.toString() == userUid ||
-                            retrievedMessage.child("recieverUid").value.toString()  == userUid){
+                    var interlocutorUid : String
+                    /*if((retrievedMessage.child("senderUid").value.toString() == userUid ||
+                            retrievedMessage.child("recieverUid").value.toString()  == userUid)){
+                            val bal = retrievedMessage.getValue(Message::class.java)
+                            Log.d("MESSGAE", bal!!.content.toString())
+                            messageList?.add(bal!!)
+                            Log.d("messageList", messageList.toString())
+                        }
+                    }*/
+                    if(retrievedMessage.child("senderUid").value.toString() != userUid){
+                        interlocutorUid = retrievedMessage.child("senderUid").value.toString()
+                    }else{
+                        interlocutorUid = retrievedMessage.child("recieverUid").value.toString()
+                    }
+                    if((retrievedMessage.child("senderUid").value.toString() == userUid || retrievedMessage.child("recieverUid").value.toString()  == userUid)
+                            && !arrayUids.contains(interlocutorUid)){
                         val bal = retrievedMessage.getValue(Message::class.java)
                         messageList?.add(bal!!)
+                        Log.d("MESSGAE", bal!!.content.toString())
+                        arrayUids.add(interlocutorUid)
                     }
                 }
+                Log.d("arrayuids", arrayUids.toString())
+                Log.d("messageList", messageList.toString())
                 val adapter = ChatAdapter(applicationContext!!,messageList!!, this@ChatsActivity, userUid.toString())
                 recyclerviewChats.layoutManager = LinearLayoutManager(applicationContext)
                 recyclerviewChats.adapter = adapter

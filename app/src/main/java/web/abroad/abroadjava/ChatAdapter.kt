@@ -27,7 +27,7 @@ class ChatAdapter(val context: Context, val chatList : ArrayList<Message>, onAcc
     var mOnAccommodationClickListener : OnAccommodationClickListener = onAccommodationClickListener
 
     override fun getItemCount(): Int {
-        return chatList.size
+        return 2//chatList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomChat {
@@ -51,6 +51,7 @@ class CustomChat(val view : View) : RecyclerView.ViewHolder(view) , View.OnClick
 
     fun bind(message: Message, position: String, onAccommodationClickListener: OnAccommodationClickListener, context: Context, userUid: String) {
         content.text = message.content
+        Log.d("ADAPTER", message.content)
         val database = Firebase.database
         val myRef = database.getReference("users")
         myRef.addValueEventListener(object : ValueEventListener {
