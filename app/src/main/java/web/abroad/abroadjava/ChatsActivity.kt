@@ -61,8 +61,11 @@ class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
                         arrayUids.add(interlocutorUid)
                     }
                 }
-                Log.d("arrayuids", arrayUids.toString())
-                Log.d("messageList", messageList.toString())
+                for (data in arrayUids)
+                    Log.d("auid", data.toString())
+                for (data in messageList!!)
+                    Log.d("messageList", data.content.toString())
+
                 val adapter = ChatAdapter(applicationContext!!,messageList!!, this@ChatsActivity, userUid.toString())
                 recyclerviewChats.layoutManager = LinearLayoutManager(applicationContext)
                 recyclerviewChats.adapter = adapter

@@ -27,7 +27,7 @@ class ChatAdapter(val context: Context, val chatList : ArrayList<Message>, onAcc
     var mOnAccommodationClickListener : OnAccommodationClickListener = onAccommodationClickListener
 
     override fun getItemCount(): Int {
-        return 2//chatList.size
+        return chatList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomChat {
