@@ -40,14 +40,6 @@ class ChatsActivity : AppCompatActivity(), OnAccommodationClickListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (retrievedMessage in dataSnapshot.children) {
                     var interlocutorUid : String
-                    /*if((retrievedMessage.child("senderUid").value.toString() == userUid ||
-                            retrievedMessage.child("recieverUid").value.toString()  == userUid)){
-                            val bal = retrievedMessage.getValue(Message::class.java)
-                            Log.d("MESSGAE", bal!!.content.toString())
-                            messageList?.add(bal!!)
-                            Log.d("messageList", messageList.toString())
-                        }
-                    }*/
                     if(retrievedMessage.child("senderUid").value.toString() != userUid){
                         interlocutorUid = retrievedMessage.child("senderUid").value.toString()
                     }else{

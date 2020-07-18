@@ -67,6 +67,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:minWidth="75dp"
+                android:maxHeight="25dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 style="@style/TextExplanationMedium"/>

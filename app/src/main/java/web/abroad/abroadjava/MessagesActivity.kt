@@ -57,7 +57,7 @@ class MessagesActivity : AppCompatActivity() {
                 for (retrievedUser in dataSnapshot.children) {
                     if(retrievedUser.child("uid").value.toString() == recieverUid){
                         val recieverName = findViewById<TextView>(R.id.txt_reciever)
-                        recieverName.text = retrievedUser.child("name").value.toString() + retrievedUser.child("lastname").value.toString()
+                        recieverName.text = retrievedUser.child("name").value.toString() + " " + retrievedUser.child("lastname").value.toString()
                         displayImage()
                     }
                 }

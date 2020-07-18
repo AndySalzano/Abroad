@@ -50,7 +50,11 @@ class CustomChat(val view : View) : RecyclerView.ViewHolder(view) , View.OnClick
     lateinit var onAccommodationClickListener : OnAccommodationClickListener
 
     fun bind(message: Message, position: String, onAccommodationClickListener: OnAccommodationClickListener, context: Context, userUid: String) {
-        content.text = message.content
+        if(message.content!!.count() > 20){
+            content.text = message.content!!.take(20) + "..."
+        }else{
+            content.text = message.content!!.take(20)
+        }
         Log.d("ADAPTER", message.content)
         val database = Firebase.database
         val myRef = database.getReference("users")
@@ -60,7 +64,8 @@ class CustomChat(val view : View) : RecyclerView.ViewHolder(view) , View.OnClick
                     if(retrievedUser.child("uid").value.toString() == message.recieverUid &&
                             retrievedUser.child("uid").value.toString() != userUid){
                         name.text = retrievedUser.child("name").value.toString()
-                    }else if(retrievedUser.child("uid").value.toString() == message.senderUid){
+                    }else if(retrievedUser.child("uid").value.toString() == message.senderUid &&
+                            retrievedUser.child("uid").value.toString() != userUid){
                         name.text = retrievedUser.child("name").value.toString()
                     }
                 }

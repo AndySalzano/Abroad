@@ -70,7 +70,7 @@ class AccommodationActivity : AppCompatActivity() {
             mapFragment.getMapAsync(OnMapReadyCallback {
                 googleMap = it
                 val location = com.google.android.gms.maps.model.LatLng(lat!!,lng!!)
-                googleMap.addMarker(MarkerOptions().position(location).title("Hi"))
+                googleMap.addMarker(MarkerOptions().position(location).title("Location"))
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
             })
         }else{
