@@ -1,6 +1,5 @@
-package web.abroad.abroadjava.model
+package web.abroad.prototype.model
 
-import com.google.gson.internal.LinkedTreeMap
 import java.io.Serializable
 
 data class Accommodation(

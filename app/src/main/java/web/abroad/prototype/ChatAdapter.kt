@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,9 +16,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.activity_chats.*
-import web.abroad.abroadjava.model.Accommodation
-import web.abroad.abroadjava.model.Message
+import web.abroad.prototype.model.Message
 import java.io.File
 
 class ChatAdapter(val context: Context, val chatList : ArrayList<Message>, onAccommodationClickListener: OnAccommodationClickListener, val userUid : String) : RecyclerView.Adapter<CustomChat>(){

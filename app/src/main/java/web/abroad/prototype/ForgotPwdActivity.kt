@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.User
 
 class ForgotPwdActivity : AppCompatActivity() {
 

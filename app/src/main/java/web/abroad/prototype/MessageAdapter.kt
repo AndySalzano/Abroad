@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import web.abroad.abroadjava.model.Message
+import web.abroad.prototype.model.Message
 
 class MessageAdapter(val context: Context, val MessageList : ArrayList<Message>, val userUid : String) : RecyclerView.Adapter<CustomMessage>(){
 

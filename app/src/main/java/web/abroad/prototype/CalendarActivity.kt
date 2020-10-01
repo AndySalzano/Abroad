@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.CalendarView
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -16,7 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.User
 import kotlin.collections.ArrayList
 
 class CalendarActivity : AppCompatActivity() {

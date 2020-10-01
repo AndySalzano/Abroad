@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -18,14 +18,9 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_messages.*
-import kotlinx.android.synthetic.main.activity_see_accommodations.*
-import web.abroad.abroadjava.model.Accommodation
-import web.abroad.abroadjava.model.Message
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.Message
+import web.abroad.prototype.model.User
 import java.io.File
-import java.sql.Timestamp
-import java.time.Instant
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MessagesActivity : AppCompatActivity() {

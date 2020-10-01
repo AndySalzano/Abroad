@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,8 +16,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_see_accommodations.*
-import web.abroad.abroadjava.model.Accommodation
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.Accommodation
+import web.abroad.prototype.model.User
 import java.io.Serializable
 
 class SeeAccommodationsActivity : AppCompatActivity() , OnAccommodationClickListener, Serializable {

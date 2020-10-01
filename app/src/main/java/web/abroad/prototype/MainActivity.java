@@ -1,4 +1,4 @@
-package web.abroad.abroadjava;
+package web.abroad.prototype;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
@@ -15,13 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
-import web.abroad.abroadjava.model.User;
+import web.abroad.prototype.model.User;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridView;

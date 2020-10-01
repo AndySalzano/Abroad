@@ -1,28 +1,14 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
-import android.content.ClipData
 import android.content.Intent
-import android.media.Image
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.ActionMenuItemView
-import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.google.firebase.FirebaseError
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
 
-import kotlinx.android.synthetic.main.activity_login.*
-import web.abroad.abroadjava.model.User
-import java.net.URI
+import web.abroad.prototype.model.User
 
 class LoginActivity : AppCompatActivity() {
 

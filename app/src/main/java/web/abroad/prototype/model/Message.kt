@@ -1,6 +1,4 @@
-package web.abroad.abroadjava.model
-
-import java.sql.Timestamp
+package web.abroad.prototype.model
 
 class Message (
     val senderUid : String?,

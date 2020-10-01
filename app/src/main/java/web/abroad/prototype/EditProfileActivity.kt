@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.app.Activity
 import android.content.Intent
@@ -21,8 +21,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.activity_edit_profile.*
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.User
 import java.io.File
 
 class EditProfileActivity : AppCompatActivity() {

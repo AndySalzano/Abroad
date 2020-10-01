@@ -1,10 +1,9 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.widget.*
@@ -16,16 +15,12 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.User
 import java.util.*
 import android.widget.Spinner
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.MenuItem
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_upload_accommodation.*
-import web.abroad.abroadjava.model.Accommodation
+import web.abroad.prototype.model.Accommodation
 
 
 class UploadAccommodationActivity : AppCompatActivity() {

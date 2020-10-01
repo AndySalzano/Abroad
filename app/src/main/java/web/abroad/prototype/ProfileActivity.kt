@@ -1,16 +1,13 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.Typeface
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,9 +15,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.User
 import java.io.File
 
 class ProfileActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package web.abroad.abroadjava
+package web.abroad.prototype
 
 import android.app.Activity
 import android.content.Intent
@@ -7,17 +7,18 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.Menu
+import android.util.Log
 import android.view.MenuItem
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+//import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import web.abroad.abroadjava.model.User
+import web.abroad.prototype.model.User
 
-class CreateOwnerActivity : AppCompatActivity() {
 
+class RegisterActivity : AppCompatActivity() {
     companion object {
         private const val IMAGE_ID_PICK_CODE = 999
         private const val IMAGE_PROFILE_PICK_CODE = 1000
@@ -29,7 +30,7 @@ class CreateOwnerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_owner)
+        setContentView(R.layout.activity_register)
 
         val btnUploadID = findViewById<Button>(R.id.btn_ID)
         btnUploadID.setOnClickListener {
@@ -44,6 +45,9 @@ class CreateOwnerActivity : AppCompatActivity() {
             val txtPwd = findViewById<EditText>(R.id.txt_pwd).text.toString()
             val txtHomeCountry = findViewById<EditText>(R.id.txt_home_country).text.toString()
             val txtHomeCity = findViewById<EditText>(R.id.txt_home_city).text.toString()
+            val txtDestinationCountry = findViewById<EditText>(R.id.txt_destination_country).text.toString()
+            val txtDestinationCity = findViewById<EditText>(R.id.txt_destination_city).text.toString()
+            val txtCurrentStudies = findViewById<EditText>(R.id.txt_current_studies).text.toString()
 
             val infoFilled = checkForEmptySlots(
                     txtName,
@@ -51,7 +55,10 @@ class CreateOwnerActivity : AppCompatActivity() {
                     txtEmail,
                     txtPwd,
                     txtHomeCountry,
-                    txtHomeCity
+                    txtHomeCity,
+                    txtDestinationCountry,
+                    txtDestinationCity,
+                    txtCurrentStudies
             )
 
             if(infoFilled){
@@ -62,7 +69,10 @@ class CreateOwnerActivity : AppCompatActivity() {
                         txtPwd,
                         txtHomeCountry,
                         txtHomeCity,
-                        true
+                        txtDestinationCountry,
+                        txtDestinationCity,
+                        txtCurrentStudies,
+                        false
                 )
             }
         }
@@ -111,9 +121,12 @@ class CreateOwnerActivity : AppCompatActivity() {
             pwd: String,
             homeCountry : String,
             homeCity : String,
+            destinationCountry : String,
+            destinationCity : String,
+            currentStudies : String,
             isOwner : Boolean
     ) {
-        Toast.makeText(applicationContext,"Creating account", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext,"Creating account",Toast.LENGTH_SHORT).show()
         /* Saves the profile img into Firebase Storage */
         var clientStorage = FirebaseStorage.getInstance().getReference("/profile_images/$uid")
         clientStorage.putFile(imageProfileUri!!).addOnSuccessListener {
@@ -132,9 +145,9 @@ class CreateOwnerActivity : AppCompatActivity() {
                         imgProfile,
                         homeCountry,
                         homeCity,
-                        "",
-                        "",
-                        "",
+                        destinationCountry,
+                        destinationCity,
+                        currentStudies,
                         isOwner
                 )
 
@@ -145,7 +158,7 @@ class CreateOwnerActivity : AppCompatActivity() {
                             clientStorage = FirebaseStorage.getInstance().getReference("/id_images/$uid")
                             clientStorage.putFile(imageIDUri!!).addOnSuccessListener {
                                 Log.d("Register", "Successfully uploaded image ${it.metadata?.path}")
-                                Toast.makeText(applicationContext,"Account created", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext,"Account created",Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
                             }
@@ -166,12 +179,17 @@ class CreateOwnerActivity : AppCompatActivity() {
             email: String,
             pwd: String,
             homeCountry : String,
-            homeCity : String
+            homeCity : String,
+            destinationCountry : String,
+            destinationCity : String,
+            currentStudies : String
     ) : Boolean {
 
         if(name.isNotEmpty() && lastname.isNotEmpty() && email.isNotEmpty()
                 && pwd.isNotEmpty() && homeCountry.isNotEmpty()
-                && homeCity.isNotEmpty() && imageProfileUri != null && imageIDUri != null) {
+                && homeCity.isNotEmpty() && destinationCountry.isNotEmpty()
+                && destinationCity.isNotEmpty() && currentStudies.isNotEmpty()
+                && imageProfileUri != null && imageIDUri != null) {
             return true
         }else{
             /* If its empty, it displays a message showing the problem */
@@ -189,13 +207,16 @@ class CreateOwnerActivity : AppCompatActivity() {
             pwd: String,
             homeCountry : String,
             homeCity : String,
+            destinationCountry : String,
+            destinationCity : String,
+            currentStudies : String,
             isOwner: Boolean
     ) {
         if(imageProfileUri != null && imageIDUri != null){
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,pwd)
                     .addOnCompleteListener{
                         if(!it.isSuccessful) return@addOnCompleteListener
-                        Toast.makeText(applicationContext,"Creating account", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext,"Creating account",Toast.LENGTH_SHORT).show()
                         Log.d("Register", "Created user with uid ${it.result.toString()}")
                         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pwd)
                                 .addOnCompleteListener(this) { task ->
@@ -212,6 +233,9 @@ class CreateOwnerActivity : AppCompatActivity() {
                                                     pwd,
                                                     homeCountry,
                                                     homeCity,
+                                                    destinationCountry,
+                                                    destinationCity,
+                                                    currentStudies,
                                                     isOwner
                                             )
                                         }
@@ -223,7 +247,7 @@ class CreateOwnerActivity : AppCompatActivity() {
                         val txtError = findViewById<TextView>(R.id.txt_error)
                         txtError.textSize = 20f
                         txtError.text = it.message
-                        Toast.makeText(applicationContext,"${it.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext,"${it.message}",Toast.LENGTH_SHORT).show()
                     }
         }else{
             val txtError = findViewById<TextView>(R.id.txt_error)
